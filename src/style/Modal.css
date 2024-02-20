@@ -16,7 +16,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    width: 30%;
+    width: clamp(300px, 30%, 700px);
     height: 50%;
     background-color: rgb(250, 255, 240);
     border-radius: 4px;
