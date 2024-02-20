@@ -7,7 +7,6 @@
     text-align: center;
     cursor: pointer;
     transition: transform 0.2s;
-    list-style: none;
     display: flex;
     flex-direction: column;
     color: rgb(58, 57, 57);
@@ -19,7 +18,7 @@
 }
 
 .card img {
-    transform: scale(0.9);
+    transform: scale(0.95);
     height: 100px;
 }
 

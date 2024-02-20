@@ -3,21 +3,31 @@ import '../style/App.css';
 import CardList from './CardList';
 import Scoreboard from './Scoreboard';
 import Modal from './Modal';
+import EndOfGameMessage from './EndOfGameMessage';
 
 function App() {
+  const numberOfCards = 8;
+  const maxPokemonId = 1000;
   const [data, setData] = useState(null);
   const [selectedCardsIds, setSelectedCardsIds] = useState([]);
   const [endOfGame, setEndOfGame] = useState(false);
-  const numberOfCards = 8;
-  const maxPokemonId = 1000;
+  const [highestScore, setHighestScore] = useState(getStoredHighestScore());
+  const [idsArray, setIdsArray] = useState(getRandomIdsArray());
   
-  const isGameWon = () => {
-    return (selectedCardsIds.length === numberOfCards)
+  function getStoredHighestScore() {
+    return localStorage.getItem('highestScore') || 0;
   }
 
-  const getRandomId = () => Math.floor(Math.random() * maxPokemonId);
+  const setStoredHighestScore = (score) => {
+    localStorage.setItem('highestScore', score);
+    setHighestScore(score);
+  }
 
-  const getRandomIdsArray = () => {
+  function getRandomId() {
+    return Math.floor(Math.random() * maxPokemonId);
+  }
+
+  function getRandomIdsArray() {
     const idsSet = new Set();
     while(idsSet.size < numberOfCards) {
       idsSet.add(getRandomId());
@@ -25,18 +35,13 @@ function App() {
     return Array.from(idsSet);
   }
 
-  const [idsArray, setIdsArray] = useState(getRandomIdsArray());
+  const isGameWon = () => selectedCardsIds.length === numberOfCards;
 
   const selectCard = (cardId => {
-    if (selectedCardsIds.includes(cardId)) {
-      console.log('you just lost')
-      setEndOfGame(true);
-    }
-    else {
-      console.log('keep going')
-      setSelectedCardsIds([...selectedCardsIds, cardId])
-    }
-  })
+    selectedCardsIds.includes(cardId) 
+      ? setEndOfGame(true) 
+      : setSelectedCardsIds([...selectedCardsIds, cardId])
+    })
 
   const resetGame = () => {
     setSelectedCardsIds([]);
@@ -51,7 +56,6 @@ function App() {
 
   useEffect(() => {
     if (selectedCardsIds.length === numberOfCards) {
-      console.log('you won');
       setEndOfGame(true);
     }
   }, [selectedCardsIds]);
@@ -77,17 +81,25 @@ function App() {
     .catch(error => console.error(`Error fetching data: ${error}`))
   }, [idsArray]);
 
+  useEffect(() => {
+    if(endOfGame) {
+      const currentGameScore = selectedCardsIds.length;
+      currentGameScore > highestScore && setStoredHighestScore(currentGameScore);
+    }
+  }, [endOfGame, selectedCardsIds, highestScore]);
+
   return (
-    <>
+    <div className='app'>
       <h1>Memory Game App</h1>
-      <Scoreboard correctGuesses={selectedCardsIds.length} maxGuesses={numberOfCards} />
-      <CardList data={data} selectCard={selectCard} />
+      <Scoreboard correctGuesses={selectedCardsIds.length} maxGuesses={numberOfCards} highestScore={highestScore} />
+      <CardList data={data} selectCard={selectCard} selectedCardsIds={selectedCardsIds} />
       {endOfGame 
         && <Modal resetGame={resetGame} changePokemonSet={changePokemonSet}>
-          <p>{isGameWon() ? "Congratulations! You won!" : "You lost"}</p>
+          <EndOfGameMessage isGameWon={isGameWon()} />
+          <Scoreboard correctGuesses={selectedCardsIds.length} maxGuesses={numberOfCards} highestScore={highestScore} />
         </Modal>
       }
-    </>
+    </div>
   )
 }
 

@@ -11,7 +11,6 @@ export default function CardList(props) {
             let randomIndex = Math.floor(Math.random() * array.length);
             newArray.push(arrayCopy.splice(randomIndex, 1)[0]);
         }
-        console.log(newArray);
         return newArray;
     }
 

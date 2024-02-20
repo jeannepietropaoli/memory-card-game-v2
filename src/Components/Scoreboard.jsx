@@ -1,9 +1,9 @@
 export default function Scoreboard(props) {
-    const {correctGuesses, maxGuesses} = props;
+    const {correctGuesses, maxGuesses, highestScore } = props;
     return (
         <div>
-            <h2>Scoreboard</h2>
-            <p>{`You guessed ${correctGuesses} / ${maxGuesses}, keep going !`}</p>
+           <p>{`Score : ${correctGuesses} / ${maxGuesses}`}</p>
+           <p>{`Highest score : ${highestScore}`}</p>
         </div>
     )
 }
