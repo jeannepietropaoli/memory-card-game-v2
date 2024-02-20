@@ -12,6 +12,8 @@ https://www.theodinproject.com/paths/full-stack-javascript/courses/react
 
 The goal of this project is to create a Memory Card game using React and implement the concepts learned so far by using hooks to manage and utilize state while fetching and using data from an external API.
 
+API used in this project: PokeAPI. See the documentation : https://pokeapi.co/docs/v2.
+
 ## Skills to practice
 
 - Getting always more familiar with React
