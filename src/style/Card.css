@@ -1,0 +1,66 @@
+.card {
+    background-color: rgb(250, 255, 240);
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    color: rgb(58, 57, 57);
+    position: relative;
+}
+
+.card figure {
+    margin: 0;
+}
+
+.card img {
+    transform: scale(0.9);
+    height: 100px;
+}
+
+.card figcaption {
+    position: relative;
+    width: max-content;
+    margin: 0 auto;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 1px;
+    bottom: 43px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(187, 182, 182);
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card:hover img {
+    transform: scale(1);
+}
+
+figcaption::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 10px;
+    bottom: 1px;
+    left: -15%;
+    background-color: yellow;
+    z-index: -1;
+    transition: width 0.2s;
+    transform-origin: left;
+}
+
+.card:hover figcaption::after {
+    width: 130%;
+}
