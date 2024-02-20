@@ -90,7 +90,8 @@ function App() {
 
   return (
     <div className='app'>
-      <h1>Memory Game App</h1>
+      <h1 className='app--title'>Memory Game</h1>
+      <h2 className='app--subtitle'>- Pokemon Edition -</h2>
       <Scoreboard correctGuesses={selectedCardsIds.length} maxGuesses={numberOfCards} highestScore={highestScore} />
       <CardList data={data} selectCard={selectCard} selectedCardsIds={selectedCardsIds} />
       {endOfGame 
