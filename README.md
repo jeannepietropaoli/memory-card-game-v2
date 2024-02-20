@@ -24,9 +24,12 @@ The goal of this project is to create a Memory Card game using React and impleme
 ## Features
 
 - A simple memory card game : click on a Card but don't click twice on the same or you loose !
-- Fun theme around Simpson characters
+- Fun Pokemon theme
 - Pop up at the end of the game displaying your score
 - Highest score saved through localStorage
+- Possibilty to keep the same Pokemon through games or fetch some new ones
 
 ## Improvments / Features to come
 
+- Add levels (with a increasing number of cards to choose from)
+- Add a perfect score custom message
