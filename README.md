@@ -2,7 +2,7 @@
 
 ## Live version
 
-coming soon...
+https://memory-card-game-pokemon-edition.netlify.app/
 
 ## Description
 
