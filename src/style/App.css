@@ -5,3 +5,13 @@
   padding: 2rem;
   text-align: center;
 }
+
+.app--title {
+  font-size: 1.8em;
+  margin: 0;
+
+}
+
+.app--subtitle {
+  font-size: 1em;
+}
